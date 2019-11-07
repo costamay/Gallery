@@ -10,11 +10,11 @@ from .models import Picture, Location,Category
 #     context = {'images' : img_list}
 #     return render(request, "photo/index.html", context)
 
-def home(request):
+def index(request):
     images = Picture.objects.all()
     location = Location.objects.all()
     context = {
         "images":images,
         "location":location,
     }
-    return render(request, 'photo/home.html', context)
+    return render(request, 'photo/index.html', context)
