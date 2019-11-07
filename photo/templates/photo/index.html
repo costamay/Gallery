@@ -1,0 +1,86 @@
+<!-- 
+{% extends 'photo/base.html' %}
+
+{% load photo_tags %}
+
+{% block body %}
+	{% if images %}
+		{% for image in images %}
+			{% with image|split:'.' as strs %}
+				{% with strs|length as str_arr_len %}
+					{% with str_arr_len|add:'-1' as ext_idx %}
+						{% if strs|get_by_index:ext_idx == 'jpg' %}
+							<a href="{{ MEDIA_URL }}images/{{ image }}">
+								<img src="{{ MEDIA_URL }}images/thumbs/{{ image }}" alt="{{ image }}">
+							</a>
+						{% endif %}
+					{% endwith %}
+				{% endwith %}
+			{% endwith %}
+			{% if forloop.counter|divisibleby:4 %}
+				<div class="clear"></div>
+			{% endif %}
+		{% endfor %}
+	{% else %}
+		<p>No image available.</p>
+	{% endif %}
+{% endblock body %}
+
+{% block extra_js %}
+	<script type='text/javascript'>
+		$(document).ready(function() {
+			$('.gallery a').simpleLightbox();
+		});
+	</script>
+{% endblock extra_js %} -->
+
+
+{% include 'photo/base.html' %}
+
+
+<div class="container-flull">
+  <div class="container-full banner content">
+    <div class="overlay">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1 class="text-white text-center intro">THE GALLERY</h1>
+          <a href="#gallery" class="btn btn-outline-info mt-3 text-white"  name="button">View Gallery</a>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+<section id="gallery">
+  {% block content %}
+  <div class="row container-fluid content">
+    {% for image in images %}
+      <div class="col-md-4 mt-5">
+          <img src="/photo{{image.image_path.url}}" class="image-responsive w-100 img-thumbnail btn-outline-info" data-toggle="modal" data-target="#{{image.id}}" alt="image">
+      </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <h2 class="modal-title" id="title">{{image.name}}</h2>
+                <img src="/photo{{image.image_path.url}}" class="image-responsive w-100 btn btn-outline-info" alt="image">
+                <p class="">{{image.description}}</p>
+                <p>Location taken ~ {{image.location}}</p>
+                <p>Category ~ {{image.category}}</p>
+                <p>Posted on {{image.pub_date}}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+
+  {% endblock %}
+</section>
