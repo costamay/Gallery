@@ -1,5 +1,5 @@
 :satisfied:
-# Blog
+# Gallery
 #### This project help users view images available with category and location, Monday November 11th 2019 
 #### By **OPIYO TITUS**&trade;
 
