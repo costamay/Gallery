@@ -7,7 +7,7 @@
 This is an app that allows users to find images of their choice
 
 ## Project live site
-  This is the live .[ Click for the demo]()
+  This is the live .[ Click for the demo](https://thegallery001.herokuapp.com/)
  ![Image](media/images/project.png)
 ## Features
 * landing page containing random images
